@@ -237,7 +237,8 @@ public class BotActions{
         try{
             out = deepSeekService.generateText(prompt);
         }catch(Exception exc){
-
+            logger.error("LLM error: {}", exc.getMessage(), exc);
+            out = "Error: " + exc.getMessage();
         }
 
         BotHelper.sendMessageToTelegram(chatId, "LLM: "+out, telegramClient, null);
